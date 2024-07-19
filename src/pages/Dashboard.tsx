@@ -16,9 +16,9 @@ export function Dashboard() {
                         <p>
                         Connected to wallet: <b>{anchorWallet.publicKey.toBase58()}</b>
                         </p>
-                        {/* <Authentication />
-                        <Transfer /> */}
-                        {/* <Account /> */}
+                        <Authentication />
+                        <Transfer />
+                        <Account />
                         <Swap />
                     </div>
                 ) : (
