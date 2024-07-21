@@ -1,8 +1,10 @@
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
-import { Authentication } from "./Authentication";
-import { Transfer } from "./Transfer";
-import { Account } from "./Account";
-import { Swap } from "./Swap";
+// import { Authentication } from "./Authentication";
+// import { Transfer } from "./Transfer";
+// import { Account } from "./Account";
+// import { Swap } from "./Swap";
+import UserInitialization from "./UserInitialization";
+import RewardContentCreator from "./RewardContentCreator";
 
 export function Dashboard() {
 
@@ -16,10 +18,12 @@ export function Dashboard() {
                         <p>
                         Connected to wallet: <b>{anchorWallet.publicKey.toBase58()}</b>
                         </p>
-                        <Authentication />
+                        {/* <Authentication />
                         <Transfer />
                         <Account />
-                        <Swap />
+                        <Swap /> */}
+                        <UserInitialization/>
+                        <RewardContentCreator/>
                     </div>
                 ) : (
                     <div>
