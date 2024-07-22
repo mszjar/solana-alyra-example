@@ -41,6 +41,16 @@
     background: #ccc;
     margin:10px 0;
 }
+
+.likeIcon{
+    cursor: pointer;
+    margin-right: 0.25rem;
+}
+.likeIcon.active{
+    color: #B99650;
+    cursor: pointer;
+}
+
 .publisher{
     display: flex;
     align-items: center;
