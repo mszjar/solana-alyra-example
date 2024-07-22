@@ -78,3 +78,4 @@ export const IDL = {
 export const PROGRAM_ID = new PublicKey(
   "74oXqeNjUuheobfCu37hYTLpNzZBmHS5ogGAu2jT39X4"
 );
+
