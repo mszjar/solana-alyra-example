@@ -8,6 +8,7 @@ import { getSolanaBalance } from "./helpers/solana.helper";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/home/Home";
 import Video from "./pages/video/Video";
+import CreateProposal from "./pages/CreateProposal";
 
 function App() {
   const wallet = useWallet();
@@ -34,6 +35,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home sidebarOpen={sidebarOpen}></Home>} />
         <Route path="/video/:categoryId/:videoId" element={<Video></Video>} />
+        <Route path="/addProposal" element={<CreateProposal></CreateProposal>} />
       </Routes>
     </div>
   );

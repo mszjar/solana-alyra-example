@@ -58,10 +58,10 @@ const VoteOnProposal: React.FC = () => {
 
   return (
     <div className="vote-on-proposal">
-      <h2>Proposition de vote</h2>
+      <h2>Vote</h2>
       {selectedProposal && (
         <div className="proposal-container">
-          <h3>Titre : {selectedProposal.account.title}</h3>
+          <h3>{selectedProposal.account.title}</h3>
           <p>{selectedProposal.account.description}</p>
           <h4>Vos options de vote :</h4>
           <div className="choices-container">

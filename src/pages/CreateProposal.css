@@ -1,0 +1,93 @@
+.create-proposal {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-proposal h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .create-proposal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .choice-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .choice-input input {
+    flex-grow: 1;
+  }
+  
+  .remove-choice {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .create-proposal button {
+    background-color: #B99650;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    align-self: center;
+  }
+  
+  .create-proposal button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+  }
+  
+  .create-proposal button:hover:not(:disabled) {
+    background-color: #B99650;
+  }
+  
+  .create-proposal .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .create-proposal .success-message {
+    color: green;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .create-proposal .success-message a {
+    margin-left: .5rem;
+  }
+  
