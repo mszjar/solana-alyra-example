@@ -23,30 +23,35 @@ export const getRecentBlockhash = async (): Promise<string | null> => {
     }
 }
 
-export const submitProposal = async (wallet: AnchorWallet, description: string): Promise<string | null> => {
+export const createProposal = async (
+    wallet: AnchorWallet,
+    title: string,
+    description: string,
+    choices: string[],
+    deadline: number
+  ): Promise<string | null> => {
     try {
-        const tx = await program.methods.submitProposal(description)
-            .accounts({
-                proposal: wallet.publicKey,
-                creator: wallet.publicKey,
-                creatorUser: wallet.publicKey,
-                systemProgram: SystemProgram.programId,
-            })
-            .transaction();
-
-        const recentBlockhash = await getRecentBlockhash();
-        if (tx && recentBlockhash) {
-            tx.feePayer = wallet.publicKey;
-            tx.recentBlockhash = recentBlockhash;
-            const signedTx = await wallet.signTransaction(tx);
-            return await connection.sendRawTransaction(signedTx.serialize());
-        }
-        return null;
+      const tx = await program.methods.create_proposal(title, description, choices, new BN(deadline))
+        .accounts({
+          proposal: wallet.publicKey,  // This should be a new account for the proposal
+          signer: wallet.publicKey,
+          systemProgram: SystemProgram.programId,
+        })
+        .transaction();
+  
+      const recentBlockhash = await getRecentBlockhash();
+      if (tx && recentBlockhash) {
+        tx.feePayer = wallet.publicKey;
+        tx.recentBlockhash = recentBlockhash;
+        const signedTx = await wallet.signTransaction(tx);
+        return await connection.sendRawTransaction(signedTx.serialize());
+      }
+      return null;
     } catch (error) {
-        console.error("Error submitting proposal:", error);
-        return null;
+      console.error("Error creating proposal:", error);
+      return null;
     }
-};
+  };
 
 export const rewardContentCreator = async (
   wallet: AnchorWallet,
@@ -54,7 +59,7 @@ export const rewardContentCreator = async (
 ): Promise<string | null> => {
     try {
         const tx = await program.methods
-            .rewardContentCreator()
+            .reward_content_creator()
             .accounts({
                 user: wallet.publicKey,
                 recipient: recipientPubkey,
@@ -87,25 +92,36 @@ export const rewardContentCreator = async (
     }
 };
 
-export const voteProposal = async (wallet: AnchorWallet, proposalPubkey: PublicKey): Promise<string | null> => {
+export const castVote = async (
+    wallet: AnchorWallet,
+    proposalPubkey: PublicKey,
+    choiceIndex: number
+  ): Promise<string | null> => {
     try {
-        const tx = await program.methods.voteProposal()
-            .accounts({
-                user: wallet.publicKey,
-                proposal: proposalPubkey,
-            })
-            .transaction();
-
-        const recentBlockhash = await getRecentBlockhash();
-        if (tx && recentBlockhash) {
-            tx.feePayer = wallet.publicKey;
-            tx.recentBlockhash = recentBlockhash;
-            const signedTx = await wallet.signTransaction(tx);
-            return await connection.sendRawTransaction(signedTx.serialize());
-        }
-        return null;
+      const [voterPda, _] = PublicKey.findProgramAddressSync(
+        [proposalPubkey.toBuffer(), wallet.publicKey.toBuffer()],
+        program.programId
+      );
+  
+      const tx = await program.methods.vote(choiceIndex)
+        .accounts({
+          proposal: proposalPubkey,
+          voter: voterPda,
+          signer: wallet.publicKey,
+          systemProgram: SystemProgram.programId,
+        })
+        .transaction();
+  
+      const recentBlockhash = await getRecentBlockhash();
+      if (tx && recentBlockhash) {
+        tx.feePayer = wallet.publicKey;
+        tx.recentBlockhash = recentBlockhash;
+        const signedTx = await wallet.signTransaction(tx);
+        return await connection.sendRawTransaction(signedTx.serialize());
+      }
+      return null;
     } catch (error) {
-        console.error("Error voting on proposal:", error);
-        return null;
+      console.error("Error casting vote:", error);
+      return null;
     }
-};
+  };
