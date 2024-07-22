@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_lang::solana_program::{program::invoke, system_instruction};
 
-declare_id!("AkHUdwLJHcupxSirEchGMEq3ezNmaHv79fYV91Hnh3Aj");
+declare_id!("");
 
 pub mod constants;
 pub mod errors;
@@ -54,6 +54,7 @@ mod mescena {
 pub struct RewardContentCreator<'info> {
     #[account(mut)]
     pub user: Signer<'info>,
+    /// CHECK: This is not dangerous because we don't read or write from this account
     #[account(mut)]
     pub recipient: AccountInfo<'info>,
     pub system_program: Program<'info, System>,
