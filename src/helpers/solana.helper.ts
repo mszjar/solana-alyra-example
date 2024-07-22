@@ -23,31 +23,6 @@ export const getRecentBlockhash = async (): Promise<string | null> => {
     }
 }
 
-export const submitProposal = async (wallet: AnchorWallet, description: string): Promise<string | null> => {
-    try {
-        const tx = await program.methods.submitProposal(description)
-            .accounts({
-                proposal: wallet.publicKey,
-                creator: wallet.publicKey,
-                creatorUser: wallet.publicKey,
-                systemProgram: SystemProgram.programId,
-            })
-            .transaction();
-
-        const recentBlockhash = await getRecentBlockhash();
-        if (tx && recentBlockhash) {
-            tx.feePayer = wallet.publicKey;
-            tx.recentBlockhash = recentBlockhash;
-            const signedTx = await wallet.signTransaction(tx);
-            return await connection.sendRawTransaction(signedTx.serialize());
-        }
-        return null;
-    } catch (error) {
-        console.error("Error submitting proposal:", error);
-        return null;
-    }
-};
-
 export const rewardContentCreator = async (
   wallet: AnchorWallet,
   recipientPubkey: PublicKey
@@ -83,29 +58,6 @@ export const rewardContentCreator = async (
         return txid;
     } catch (error) {
         console.error("Error in rewardContentCreator:", error);
-        return null;
-    }
-};
-
-export const voteProposal = async (wallet: AnchorWallet, proposalPubkey: PublicKey): Promise<string | null> => {
-    try {
-        const tx = await program.methods.voteProposal()
-            .accounts({
-                user: wallet.publicKey,
-                proposal: proposalPubkey,
-            })
-            .transaction();
-
-        const recentBlockhash = await getRecentBlockhash();
-        if (tx && recentBlockhash) {
-            tx.feePayer = wallet.publicKey;
-            tx.recentBlockhash = recentBlockhash;
-            const signedTx = await wallet.signTransaction(tx);
-            return await connection.sendRawTransaction(signedTx.serialize());
-        }
-        return null;
-    } catch (error) {
-        console.error("Error voting on proposal:", error);
         return null;
     }
 };
