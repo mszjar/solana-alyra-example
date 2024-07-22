@@ -1,6 +1,7 @@
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import RewardContentCreator from "./RewardContentCreator";
 import VoteOnProposal from "./VoteOnProposal";
+import CreateProposal from "./CreateProposal";
 
 export function Dashboard() {
 
@@ -16,6 +17,7 @@ export function Dashboard() {
                         </p>
                         <RewardContentCreator/>
                         <VoteOnProposal/>
+                        <CreateProposal/>
                     </div>
                 ) : (
                     <div>
