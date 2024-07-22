@@ -1,0 +1,81 @@
+nav{
+    padding: 10px 2%;
+    justify-self: space-between;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    background: #fff;
+    position: sticky;
+    top:0;
+    z-index: 10;
+}
+.flex-div {
+    display: flex;
+    align-items: center;
+}
+.nav-left .menu-icon{
+    width: 22px;
+    margin-right: 25px;
+}
+
+.nav-left .logo{
+    width: 45px;
+    border-radius: 50%;
+}
+.nav-left .logo_name{
+    width: 100px;
+}
+
+.nav-middle .search-box{
+    border: 1px solid #B99650;
+    margin-right: 15px;
+    padding: 8px 12px;
+    border-radius: 25px;
+}
+
+.nav-middle .search-box input{
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 400px;
+}
+
+.nav-middle .search-box img{
+    width: 15px;
+}
+
+.nav-right img{
+    width: 25px;
+    margin-right: 25px;
+}
+.nav-right .user-icon{
+    width: 35px;
+    border-radius: 50%;
+    margin-left: 1rem;
+}
+
+.wallet {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+} 
+
+@media (max-width:900px){
+    .menu-icon{
+        display: none;
+    }
+    .nav-right img{
+        display: none;
+    }
+    .nav-right .user-icon{
+        display: block;
+        width: 30px;
+    }
+    .logo{
+        width: 90px;
+    }
+
+    .nav-middle .search-box input{
+        width:100px;
+    }
+    
+}

@@ -1,0 +1,11 @@
+.side-link{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    flex-wrap: wrap;
+    width: fit-content;
+ }
+ .small-sidebar span{
+    display: none;
+}

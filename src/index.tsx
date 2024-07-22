@@ -7,6 +7,7 @@ import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { TipLinkWalletAutoConnect } from '@tiplink/wallet-adapter-react-ui';
 import { registerTipLinkWallet } from '@tiplink/wallet-adapter';
 
+import { BrowserRouter as Router } from 'react-router-dom'
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -28,7 +29,9 @@ root.render(
     >
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
+        <Router>
           <App />
+        </Router>
         </WalletModalProvider>
       </WalletProvider>
     </TipLinkWalletAutoConnect>
