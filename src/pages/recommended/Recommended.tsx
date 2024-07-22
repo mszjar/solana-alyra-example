@@ -3,6 +3,7 @@ import {useNavigate } from 'react-router-dom';
 import './Recommended.css';
 import { API_KEY, value_converter } from '../../data';
 import moment from 'moment';
+import VoteOnProposal from '../VoteOnProposal';
 
 interface RecommendedProps {
   categoryId: string;
@@ -50,6 +51,9 @@ const Recommended: React.FC<RecommendedProps> = ({ categoryId }) => {
 
   return (
     <div className="recommended">
+      <div className="Voting-panel">
+       <VoteOnProposal />
+      </div>
       {apiData.map((card) => (
         <div key={card.id} className="side-video-list" onClick={() => handleVideoClick(card.snippet.categoryId, card.id)}>
           <div className='small-thumbnail'>

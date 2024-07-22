@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import './Video.css'
 import PlayVideo from '../playVideo/PlayVideo'
 import Recommended from '../recommended/Recommended'
+import VoteOnProposal from '../VoteOnProposal';
 
 function Video() {
   const { videoId, categoryId } = useParams<{ videoId: string; categoryId: string }>();
@@ -13,6 +14,7 @@ function Video() {
   return (
     <div className="play-container" >
       <PlayVideo  videoId={videoId} />
+      {/* <VoteOnProposal /> */}
       <Recommended  categoryId={categoryId}/>
     </div>
   )
