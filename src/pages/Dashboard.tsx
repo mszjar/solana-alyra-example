@@ -1,5 +1,6 @@
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import RewardContentCreator from "./RewardContentCreator";
+import VoteOnProposal from "./VoteOnProposal";
 
 export function Dashboard() {
 
@@ -14,6 +15,7 @@ export function Dashboard() {
                         Connected to wallet: <b>{anchorWallet.publicKey.toBase58()}</b>
                         </p>
                         <RewardContentCreator/>
+                        <VoteOnProposal/>
                     </div>
                 ) : (
                     <div>
